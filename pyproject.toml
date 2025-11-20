@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-api-testing"
+version = "1.0.0"
+description = "api testing using pytest"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Jorge Ribeiro", email = "mateusribeirojorge@gmail.com"}
+]
+
+dependencies = [
+    "requests>=2.31.0",
+    "pytest>=8.3.0",
+    "pytest-html>=4.1.0",
+    "pytest-xdist>=3.6.0",
+    "python-dotenv>=1.0.0",
+    "jsonschema>=4.20.0"
+]
+
+[tool.pytest.ini_options]
+# Test discovery
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# Default options
+addopts = [
+    "-v",                           # Verbose (not -vv to reduce noise)
+    "--html=reports/report.html",
+    "--self-contained-html",
+    "--strict-markers",
+]
+
+# Test markers
+markers = [
+    "smoke: Quick smoke tests",
+    "products: Tests for product endpoints",
+    "integration: Integration tests",
+    "users: Tests for user endpoints",
+    "carts: Tests for cart endpoints",
+]
+
+# Logging configuration
+# Console logging - INFO level for terminal output
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(name)s - %(message)s"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+
+# Ignore directories
+norecursedirs = [".git", ".pytest_cache", "reports", "venv", "__pycache__"]
