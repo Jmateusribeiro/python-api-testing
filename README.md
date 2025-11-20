@@ -56,11 +56,6 @@ A professional API testing framework built with pytest to validate the [FakeStor
    pytest -m products
    ```
 
-5. **Generate HTML report** (auto-generated in reports/ by default):
-   ```powershell
-   pytest
-   ```
-
 ## Project Structure
 
 ```
